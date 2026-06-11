@@ -12,6 +12,11 @@ Date: Spring/Summer '26
 
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Color constants used by the plot
+ORANGE = "#F4A736"
+TEAL = "#1D9E75"
 
 """
 BRFSS 2024 Data Dictionary
@@ -448,68 +453,68 @@ def rename_cols(obj):
 # Combined Histograum and Boxplot Function
 # ==================================================
 
-    def histogram_boxplot(data, feature, figsize = (12, 7), kde = True, bins = 15):
+def histogram_boxplot(data, feature, figsize = (12, 7), kde = True, bins = 15):
 
-        """
-        Boxplot and histogram combined
+    """
+    Boxplot and histogram combined
 
-        data: dataframe
-        feature: dataframe column
-        figsize: size of figure (default (12, 7))
-        kde: whether to show the density curve (default False)
-        bins: number of bins for histogram (default None)
-        """
+    data: dataframe
+    feature: dataframe column
+    figsize: size of figure (default (12, 7))
+    kde: whether to show the density curve (default False)
+    bins: number of bins for histogram (default None)
+    """
+
+    f2, (ax_box2, ax_hist2) = plt.subplots(
+        nrows = 2,      # Number of rows of the subplot grid = 2
+        sharex = True,  # x-axis will be shared among all subplots
+        gridspec_kw = {"height_ratios": (0.25, 0.75)},
+        figsize = figsize
     
-        f2, (ax_box2, ax_hist2) = plt.subplots(
-            nrows = 2,      # Number of rows of the subplot grid = 2
-            sharex = True,  # x-axis will be shared among all subplots
-            gridspec_kw = {"height_ratios": (0.25, 0.75)},
-            figsize = figsize
+    )                   # Creating the 2 subplots
+
+
+    sns.boxplot(
+        data = data, x = feature, ax = ax_box2, showmeans = True, color = ORANGE)       # Boxplot will be created and a star will indicate the mean value of the column
+    sns.histplot(
+        data = data, x = feature, ax = ax_hist2, bins = bins, color = TEAL, kde=kde)
+
+    ax_hist2.axvline(
+        data[feature].mean(),
+        color = "black", 
+        linestyle = "--",
+        label="Mean"
+    )                   # Add mean to the histogram
+    ax_hist2.axvline(
+        data[feature].median(), 
+        color = "red", 
+        linestyle = "--",
+        label="Median",
         
-        )                   # Creating the 2 subplots
+    )                   # Add median to the histogram
 
-    
-        sns.boxplot(
-            data = data, x = feature, ax = ax_box2, showmeans = True, color = ORANGE)       # Boxplot will be created and a star will indicate the mean value of the column
-        sns.histplot(
-            data = data, x = feature, ax = ax_hist2, bins = bins, color = TEAL, kde=kde)
-    
-        ax_hist2.axvline(
-            data[feature].mean(),
-            color = "black", 
-            linestyle = "--",
-            label="Mean"
-        )                   # Add mean to the histogram
-        ax_hist2.axvline(
-            data[feature].median(), 
-            color = "red", 
-            linestyle = "--",
-            label="Median",
-            
-        )                   # Add median to the histogram
-
-        ax_hist2.legend()
+    ax_hist2.legend()
 
 
-        # Title
+    # Title
 
-        # Main title (figure-level)
-        plt.suptitle(
-            f"Distribution of {feature} Among Adults",
-            fontsize=16,
-            fontweight="bold",
-            y=0.98
-    )
+    # Main title (figure-level)
+    plt.suptitle(
+        f"{feature} Distribution",
+        fontsize=16,
+        fontweight="bold",
+        y=0.98
+)
 
-    # Subtitle (figure-level) 
-        fig = plt.gcf()
-        fig.text(
-            0.5, 0.90,
-            "Across the U.S. States in 2022",
-            ha="center",
-            fontsize=14,
-            color="black"
-    )
+# Subtitle (figure-level) 
+    fig = plt.gcf()
+    fig.text(
+        0.5, 0.90,
+        "2024 BFRSS",
+        ha="center",
+        fontsize=14,
+        color="black"
+)
 
-        plt.show()
-        plt.close(f2)
+    plt.show()
+    plt.close(f2)

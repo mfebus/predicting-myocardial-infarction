@@ -450,71 +450,113 @@ def rename_cols(obj):
         )
 
 # ==================================================
-# Combined Histograum and Boxplot Function
+# Combined Histogram and Boxplot Function
 # ==================================================
 
-def histogram_boxplot(data, feature, figsize = (12, 7), kde = True, bins = 15):
-
+def histogram_boxplot2(data, feature, ax_box, ax_hist, kde=True, bins=15):
     """
-    Boxplot and histogram combined
+        Boxplot and histogram created to be passed into subplot
 
-    data: dataframe
-    feature: dataframe column
-    figsize: size of figure (default (12, 7))
-    kde: whether to show the density curve (default False)
-    bins: number of bins for histogram (default None)
+        Parameters
+        ----------
+        data : pandas.DataFrame
+        feature : str
+            Name of the column in the df to plot
+        ax_box : matplotlib axis
+            Subplot axis for the boxplot (created in histogram_boxplot_grid)
+        ax_hist : matplotlib axis
+            Subplot axis for the histogram (created in histogram_boxplot_grid)
+        kde : boolean, default=True
+            Include/exclude density estimation line
+        bins : int, default=15
+            bin size for histogram
+
+        Returns
+        -------
+        boxplot and histogram
     """
-
-    f2, (ax_box2, ax_hist2) = plt.subplots(
-        nrows = 2,      # Number of rows of the subplot grid = 2
-        sharex = True,  # x-axis will be shared among all subplots
-        gridspec_kw = {"height_ratios": (0.25, 0.75)},
-        figsize = figsize
-    
-    )                   # Creating the 2 subplots
-
-
     sns.boxplot(
-        data = data, x = feature, ax = ax_box2, showmeans = True, color = ORANGE)       # Boxplot will be created and a star will indicate the mean value of the column
+        data=data, x=feature, ax=ax_box, showmeans=True, color="#D35400"
+    )
     sns.histplot(
-        data = data, x = feature, ax = ax_hist2, bins = bins, color = TEAL, kde=kde)
+        data=data, x=feature, ax=ax_hist, bins=bins, color=TEAL, kde=kde
+    )
 
-    ax_hist2.axvline(
-        data[feature].mean(),
-        color = "black", 
-        linestyle = "--",
-        label="Mean"
-    )                   # Add mean to the histogram
-    ax_hist2.axvline(
-        data[feature].median(), 
-        color = "red", 
-        linestyle = "--",
-        label="Median",
-        
-    )                   # Add median to the histogram
+    ax_hist.axvline(
+        data[feature].mean(), color="green", linestyle="--", label="Mean"
+    )
+    ax_hist.axvline(
+        data[feature].median(), color="red", linestyle="--", label="Median"
+    )
 
-    ax_hist2.legend()
+    ax_hist.legend(fontsize=7, loc="upper right")   # smaller legend, pinned to a corner
+    ax_box.set(xlabel="")
+    ax_hist.set_xlabel("")          # drop x-label; the title already names the feature
+    ax_hist.set_ylabel("")          # drop the repeated "Number of States"
+    ax_box.set_yticks([])           # boxplot y-axis carries no info here — remove clutter
 
 
-    # Title
+def histogram_boxplot_grid(df, features, cols):
+    """
+        Creates matrix of boxplots/histograms for a list of features
 
-    # Main title (figure-level)
-    plt.suptitle(
-        f"{feature} Distribution",
-        fontsize=16,
-        fontweight="bold",
-        y=0.98
-)
+        Parameters
+        ----------
+        df : pandas.DataFrame
+        features : list
+            list of features to plot
+        cols : int
+            number of columns for the subplot
 
-# Subtitle (figure-level) 
-    fig = plt.gcf()
-    fig.text(
-        0.5, 0.90,
-        "2024 BFRSS",
-        ha="center",
-        fontsize=14,
-        color="black"
-)
+        Returns
+        -------
+        renders subplots of boxplot/histograms for the list of features
+    """
+    import math
+    n_features = len(features)
+    rows = math.ceil(n_features / cols)
 
+    # Height scales with the number of feature-rows so cells never get squeezed.
+    # Each feature uses 2 stacked axes (box + hist); ~2.4" of height per feature-row works well.
+    fig, axes = plt.subplots(
+        nrows=rows * 2,
+        ncols=cols,
+        figsize=(cols * 5, rows * 2.4),
+        gridspec_kw={"height_ratios": [0.3, 0.7] * rows},  # boxplot thin, histogram tall
+    )
+    axes = axes.flatten()
+
+    for i, feature in enumerate(features):
+        column_i = i % cols
+        row_j = i // cols
+
+        ax_i_box = (row_j * 2 * cols) + column_i
+        ax_i_hist = ax_i_box + cols
+
+        ax_box = axes[ax_i_box]
+        ax_hist = axes[ax_i_hist]
+
+        ax_box.sharex(ax_hist)
+
+        histogram_boxplot2(df, feature, ax_box, ax_hist)
+
+        # Title is just the feature name, on the boxplot (top of each pair)
+        ax_box.set_title(feature, fontsize=11, fontweight="bold")
+
+    # Hide any leftover empty axes when features don't fill the last row
+    for k in range(len(features), 0):
+        pass
+    used = set()
+    for i in range(len(features)):
+        column_i = i % cols
+        row_j = i // cols
+        ax_i_box = (row_j * 2 * cols) + column_i
+        used.add(ax_i_box)
+        used.add(ax_i_box + cols)
+    for k in range(len(axes)):
+        if k not in used:
+            axes[k].set_visible(False)
+
+    plt.tight_layout()
+    plt.subplots_adjust(hspace=0.5, wspace=0.2)
     plt.show()
-    plt.close(f2)

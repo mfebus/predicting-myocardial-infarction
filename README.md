@@ -1,1 +1,26 @@
-# model_myocardial_infarction
+# Predicting Myocardial Infarction from BRFSS 2024
+
+Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease (`_MICHD`) using the CDC Behavioral Risk Factor Surveillance System.
+
+## Data
+
+**Source:** [BRFSS 2024 SAS Transport File](https://www.cdc.gov/brfss/annual_data/2024/files/LLCP2024XPT.zip) (~1 GB)
+
+The raw data is not included in this repository. Run `notebook/1_import_process.ipynb` to download, extract selected columns, recode survey values, and save the processed CSV to `data/`.
+
+## Notebooks
+
+| # | Notebook | Description |
+|---|----------|-------------|
+| 1 | `1_import_process.ipynb` | Download BRFSS data, recode variables, export `processed_data.csv` |
+| 2 | `2_eda_feature_selection.ipynb` | Exploratory data analysis and feature selection |
+| 3 | `3_unsupervised_model.ipynb` | FAMD dimensionality reduction, K-Prototypes and GMM clustering |
+| 4 | `4_supervised_model.ipynb` | Logistic Regression, Random Forest, XGBoost; SHAP, ablation, failure analysis |
+
+## Setup
+
+```
+pip install -r requirements.txt
+```
+
+Run notebooks in order starting from `1_import_process.ipynb`.

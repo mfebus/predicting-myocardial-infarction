@@ -26,8 +26,7 @@ from brfss_utils import humanize, LABELS, AGE_LABELS, TARGET, RANDOM_STATE
 # EDA PLOTS
 # =====================================================================
 
-def plot_outlier_boxplot(df, cols=("_LCSYSMK", "_LCSYQTS", "LCSNUMCG"),
-                         savepath):
+def plot_outlier_boxplot(df, savepath, cols=("_LCSYSMK", "_LCSYQTS", "LCSNUMCG")):
     """Boxplot of the smoking-screen continuous features.
 
     Boxes show the IQR; points beyond the whiskers are outliers. Feature
@@ -71,9 +70,9 @@ def plot_age_health_interaction(df, savepath):
 
 
 def plot_mi_by_comorbidity(df,
+                           savepath,
                            comorbid_cols=("DIABETE4", "CVDSTRK3", "CHCCOPD3",
-                                          "CHCKDNY2", "HAVARTH4"),
-                           savepath):
+                                          "CHCKDNY2", "HAVARTH4")):
     """Horizontal bar of MI prevalence among people WITH each condition.
 
     Names the diseases rather than collapsing them into a count, with the
@@ -113,8 +112,7 @@ def plot_mi_by_comorbidity(df,
 # SHAP — global feature importance (Random Forest)
 # =====================================================================
 
-def plot_shap_beeswarm(rf_result, X_test, n_sample=500, max_display=12,
-                       savepath):
+def plot_shap_beeswarm(rf_result, X_test, savepath, n_sample=500, max_display=12):
     """SHAP beeswarm for the Random Forest: global feature importance.
 
     Shows how each feature contributes across many patients: importance
@@ -187,8 +185,7 @@ def plot_shap_beeswarm(rf_result, X_test, n_sample=500, max_display=12,
 # SENSITIVITY PLOT — min_samples_leaf
 # =====================================================================
 
-def plot_sensitivity(res, selected=20, stable_start=5,
-                     savepath):
+def plot_sensitivity(res, savepath, selected=20, stable_start=5):
     """Plot CV AUC vs min_samples_leaf from the sensitivity sweep results.
 
     A flat curve = robust (not fragile to the setting). Marks the selected
@@ -298,8 +295,7 @@ def print_failure_records(ex1, ex2, ex3):
             print(rec.T.to_string())
 
 
-def plot_failure_by_age(rf_result, X_test, y_test, example_records=None,
-                        savepath):
+def plot_failure_by_age(rf_result, X_test, y_test, savepath, example_records=None):
     """Plot false-negative and false-positive rates by age group.
 
     Optionally marks where the three Example records fall on the

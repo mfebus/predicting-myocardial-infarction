@@ -17,6 +17,10 @@ The raw data is not included in this repository. Run `notebook/1_import_process.
 | 3 | `3_unsupervised_model.ipynb` | FAMD dimensionality reduction, K-Prototypes and GMM clustering |
 | 4 | `4_supervised_model.ipynb` | Logistic Regression, Random Forest, XGBoost; SHAP, ablation, failure analysis |
 
+## Report
+
+pdf file for the final report is saved under the name SIADS_696_Report_Predicting_Myocardial_Infarction.pdf
+
 ## Setup
 
 ```

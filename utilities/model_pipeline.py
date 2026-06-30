@@ -383,7 +383,7 @@ def run_ablation(X_train, y_train, X_test, y_test, cat_features, cont_features,
     return pd.DataFrame(rows).sort_values("delta_auc").round(4).reset_index(drop=True)
 
 def run_ablation_groups(X_train, y_train, X_test, y_test,
-                        cat_features, cont_features, verbose=True):
+                        cat_features, cont_features, feature_groups=None, verbose=True):
     """Ablate each feature GROUP and rank by impact on test AUC."""
     base_cv, base_test = ablate_one(
         None, X_train, y_train, X_test, y_test, cat_features, cont_features)
@@ -391,7 +391,7 @@ def run_ablation_groups(X_train, y_train, X_test, y_test,
         print(f"Baseline — full model: CV {base_cv:.4f} | Test {base_test:.4f}\n")
 
     rows = []
-    for group, members in FEATURE_GROUPS.items():
+    for group, members in feature_groups.items():
         present = [f for f in members if f in cat_features + cont_features]
         if not present:
             continue

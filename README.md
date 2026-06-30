@@ -30,3 +30,8 @@ pip install -r requirements.txt
 ```
 
 Run notebooks in order starting from `1_import_process.ipynb`.
+
+## Acknowledgement
+
+The authors utilized generative AI tools to assist in prototyping code. To maintain the integrity of this study, all AI-generated content underwent comprehensive human evaluation and verification. 
+

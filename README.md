@@ -1,6 +1,6 @@
 # Predicting Myocardial Infarction from BRFSS 2024
 
-Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease (`_MICHD`) using the CDC Behavioral Risk Factor Surveillance System.
+Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease using the CDC Behavioral Risk Factor Surveillance System.
 
 ![Pipeline Overview](assets/workflow.png)
 

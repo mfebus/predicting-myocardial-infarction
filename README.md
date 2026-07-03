@@ -4,7 +4,13 @@ Maria Febus - Mubashar Khan - Alex Lee
 
 Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease using the CDC Behavioral Risk Factor Surveillance System.
 
-![Pipeline Overview](assets/workflow.png)
+## Methodology
+
+The project follows an end-to-end machine learning pipeline covering data
+processing, exploratory analysis, and both supervised and unsupervised
+learning approaches:
+
+![Pipeline Overview](assets//mi-heart.png)
 
 ## Data
 

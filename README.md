@@ -1,5 +1,5 @@
 # Predicting Myocardial Infarction from BRFSS 2024
-<sub> *SIADS 696 Milestone II · Maria Febus · Mubashar Khan · Alex Lee*</sub>
+<sub>SIADS 696 Milestone II · Maria Febus · Mubashar Khan · Alex Lee</sub>
 
 Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease using the CDC Behavioral Risk Factor Surveillance System.
 

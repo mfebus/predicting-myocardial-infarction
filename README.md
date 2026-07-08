@@ -10,7 +10,7 @@ The project follows an end-to-end machine learning pipeline covering data
 processing, exploratory analysis, and both supervised and unsupervised
 learning approaches:
 
-![Pipeline Overview](assets//mi-heart.png)
+![Pipeline Overview](workflow.png)
 
 ## Data
 

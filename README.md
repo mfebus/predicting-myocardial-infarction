@@ -1,5 +1,5 @@
 # Predicting Myocardial Infarction from BRFSS 2024
-### *SIADS 696 Milestone II · Maria Febus · Mubashar Khan · Alex Lee*
+### SIADS 696 Milestone II · Maria Febus · Mubashar Khan · Alex Lee
 
 Unsupervised clustering and supervised classification to identify and predict myocardial infarction / coronary heart disease using the CDC Behavioral Risk Factor Surveillance System.
 Phase 2: Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support.
@@ -47,4 +47,4 @@ The authors utilized generative AI tools to assist in prototyping code. To maint
 
 Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support. As first step, a prototype of the clinician User Experience interface is attached below.
 
-![UX](CardioAssist - UX Prototype - Standalone.html)
+[User Experience Prototyp]('CardioAssist - UX Prototype - Standalone.html')

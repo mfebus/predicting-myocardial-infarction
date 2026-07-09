@@ -43,3 +43,8 @@ Run notebooks in order starting from `1_import_process.ipynb`.
 
 The authors utilized generative AI tools to assist in prototyping code. To maintain the integrity of this study, all AI-generated content underwent comprehensive human evaluation and verification. 
 
+## Phase 2
+
+Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support. As first step, a prototype of the clinician User Experience interface is attached below.
+
+![UX](CardioAssist - UX Prototype - Standalone.html)

@@ -47,4 +47,4 @@ The authors utilized generative AI tools to assist in prototyping code. To maint
 
 Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support. As first step, a prototype of the clinician User Experience interface is attached below.
 
-[User Experience Prototype]('CardioAssist - UX Prototype - Standalone.html')
+[User Experience Prototype](https://htmlpreview.github.io/?https://github.com/mfebus/predicting-myocardial-infarction/blob/main/CardioAssist-UX-Prototype-Standalone.html)

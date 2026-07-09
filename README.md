@@ -43,8 +43,14 @@ Run notebooks in order starting from `1_import_process.ipynb`.
 
 The authors utilized generative AI tools to assist in prototyping code. To maintain the integrity of this study, all AI-generated content underwent comprehensive human evaluation and verification. 
 
-## Phase 2
+## Phase 2 - In progress
 
-Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support. As first step, a prototype of the clinician User Experience interface is attached below.
+Extending the team's predictive model into an agentic AI system where multiple specialized agents work together to interpret risk, retrieve clinical evidence, and support decisions. This phase, built independently, moves the project from prediction toward real-world clinical decision support. As a first step, a prototype of the 'CardioAssist' desktop/web app can be access by clicking the link below.  
 
-[CardioAssist Application Prototype](https://htmlpreview.github.io/?https://github.com/mfebus/predicting-myocardial-infarction/blob/main/cardio-assist-ux-prototype.html)
+**CardioAssist** is a clinician-facing risk screening tool for care coordinators and clinicians to review a patient's predicted myocardial infarction risk (from the selected Random Forest model) alongside the factors driving that prediction — age, general health, diabetes status, etc., paired with a recommended next action (referral, tests, lifestyle counseling), not just a bare probability score.
+
+Why desktop, not mobile: it's used in a clinical review workflow (queue of patients, side-by-side data + explanation panels, exportable reports), information-dense, multi-panel layouts that need screen real estate a phone can't give. This is standard for clinician-facing tools.
+
+[View CardioAssist UX Prototype](CardioAssist.pdf)
+
+
